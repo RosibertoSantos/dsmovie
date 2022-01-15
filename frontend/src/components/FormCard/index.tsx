@@ -1,7 +1,7 @@
 import './styles.css';
 import {Link} from "react-router-dom";
 import {Movie} from 'types/movies';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BASE_URL } from 'utils/requests';
 
