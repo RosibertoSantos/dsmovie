@@ -7,12 +7,13 @@ import { BASE_URL } from 'utils/requests';
 import { validateEmail } from 'utils/validate';
 
 type Props = {
-movieId : string;
+    movieId : string;
 }
 
 function FormCard( {movieId} : Props){
 
     const navigate = useNavigate();
+
     const [movie, setMovie] = useState<Movie>();
 
     useEffect(() =>{
@@ -22,12 +23,14 @@ function FormCard( {movieId} : Props){
         });
     })
   
-    const handleSubmit = (event : React.FormEvent<HTMLFormElement> ) => {
+    const handleSubmit = (event : React.FormEvent<HTMLFormElement>) => {
 
         event.preventDefault();
 
         const email = (event.target as any).email.value;
         const score = (event.target as any).score.value;
+
+        console.log(email, score, movieId);
 
         if (!validateEmail(email)){
             return;
@@ -44,9 +47,11 @@ function FormCard( {movieId} : Props){
             }
         }
 
-        axios(config).then(response =>{
+        axios(config).then( response =>{
+            console.log(response.data);
             navigate("/");
-        })
+        });
+        
     }
 
     return(
